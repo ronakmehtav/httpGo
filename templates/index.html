@@ -1,3 +1,7 @@
 {{define "content"}}
-<p>Welcome, Welcome {{.Title}} </p>
+{{if .Name}}
+<p>Welcome, Welcome {{.Name}} </p>
+{{else}}
+<p>Would, Definitely appreciate a name.</p>
+{{end}}
 {{end}}

@@ -13,6 +13,7 @@ const port = ":8000"
 
 type PageVariables struct {
 	Title string
+	Name  string
 }
 
 func main() {
@@ -28,7 +29,8 @@ func main() {
 		writer.Write([]byte(response))
 	})
 	router.Get("/html", func(w http.ResponseWriter, r *http.Request) {
-		renderTemplate(w, "index", PageVariables{Title: "Hello,World!"})
+		userName := r.URL.Query().Get("name")
+		renderTemplate(w, "index", PageVariables{Title: "Hello,World!", Name: userName})
 	})
 	fmt.Printf("Listening on port%s\n", port)
 	http.ListenAndServe(port, router)
