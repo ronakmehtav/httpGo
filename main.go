@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"path/filepath"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -19,6 +20,10 @@ type PageVariables struct {
 func main() {
 	router := chi.NewRouter()
 	router.Use(middleware.Logger)
+	router.Get("/styles/{stylesPath}", func(w http.ResponseWriter, r *http.Request) {
+		stylePath := chi.URLParam(r, "stylesPath")
+		http.ServeFile(w,r,filepath.Join("./styles/",stylePath))
+	})
 	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		userName := r.URL.Query().Get("name")
 		renderTemplate(w, "index", PageVariables{Title: "Hello,World!", Name: userName})
