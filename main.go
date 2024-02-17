@@ -19,16 +19,7 @@ type PageVariables struct {
 func main() {
 	router := chi.NewRouter()
 	router.Use(middleware.Logger)
-	router.Get("/", func(writer http.ResponseWriter, request *http.Request) {
-		name := request.URL.Query().Get("name")
-		if name == "" {
-			name = "No Name is defined."
-		}
-		response := fmt.Sprintf("<html><body><h1>Welcome, %s</h1></body></html>", name)
-		writer.Header().Set("Content-Type", "text/html")
-		writer.Write([]byte(response))
-	})
-	router.Get("/html", func(w http.ResponseWriter, r *http.Request) {
+	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		userName := r.URL.Query().Get("name")
 		renderTemplate(w, "index", PageVariables{Title: "Hello,World!", Name: userName})
 	})
