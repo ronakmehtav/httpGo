@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Main Style For Todo. */
+input[type="checkbox"]:checked + label{
+  text-decoration:line-through;
+  font-style: italic;
+}
+

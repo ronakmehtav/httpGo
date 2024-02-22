@@ -7,11 +7,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../styles/style.css" rel="stylesheet" />
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
 
 <body>
-    <main class="grid place-content-center h-svh">
-        <h1 class="text-9xl mb-5 font-bold underline">{{.Title}}</h1>
+    <header class="bg-slate-900">
+        <nav class="max-w-7xl m-auto">
+            <a class="w-fit" href="/">
+                <h1 class="text-2xl text-white w-fit p-2 font-bold underline">{{.Title}}</h1>
+            </a>
+        </nav>
+    </header>
+    <main class="grid place-content-center bg-slate-300 h-svh">
         {{ template "content" .}}
     </main>
 </body>

@@ -12,9 +12,11 @@ import (
 
 const port = ":8000"
 
+// We would need page level. For the inital page creation.
+// of all the value.
+// should be of different type.
 type PageVariables struct {
 	Title string
-	Name  string
 }
 
 func main() {
@@ -22,11 +24,10 @@ func main() {
 	router.Use(middleware.Logger)
 	router.Get("/styles/{stylesPath}", func(w http.ResponseWriter, r *http.Request) {
 		stylePath := chi.URLParam(r, "stylesPath")
-		http.ServeFile(w,r,filepath.Join("./styles/",stylePath))
+		http.ServeFile(w, r, filepath.Join("./styles/", stylePath))
 	})
 	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		userName := r.URL.Query().Get("name")
-		renderTemplate(w, "index", PageVariables{Title: "Hello,World!", Name: userName})
+		renderTemplate(w, "index", PageVariables{Title: "ToDo App"})
 	})
 	fmt.Printf("Listening on port%s\n", port)
 	http.ListenAndServe(port, router)
