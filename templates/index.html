@@ -1,5 +1,15 @@
 {{define "content"}}
-<div>
-    <input class="w-6 aspect-square align-sub" type="checkbox" id="dynamic" /> <label for="dynamic" class="text-xl">Hello World!</label>
+<div class="pb-7">
+    <input type="text" name="toda" value="">
 </div>
+{{range $i, $item := .TodoItems}}
+<div>
+    {{if $item.Status}}
+        <input class="w-6 aspect-square align-sub" checked type="checkbox" id="dynamic-{{$i}}" /> 
+    {{else}}
+        <input class="w-6 aspect-square align-sub" type="checkbox" id="dynamic-{{$i}}" /> 
+    {{end}}
+    <label for="dynamic-{{$i}}" class="text-xl">{{$item.Label}}</label>
+</div>
+{{end}}
 {{end}}

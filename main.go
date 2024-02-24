@@ -15,8 +15,15 @@ const port = ":8000"
 // We would need page level. For the inital page creation.
 // of all the value.
 // should be of different type.
+
+type TodoItem struct {
+    Label string
+    Status bool
+}
+
 type PageVariables struct {
 	Title string
+    TodoItems []TodoItem
 }
 
 func main() {
@@ -26,8 +33,16 @@ func main() {
 		stylePath := chi.URLParam(r, "stylesPath")
 		http.ServeFile(w, r, filepath.Join("./styles/", stylePath))
 	})
+    defaultItems := []TodoItem{
+        {Label: "hello, Word", Status: false},
+        {Label: "study" ,Status:true},
+        {Label: "eat" , Status: false},
+    }
 	router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		renderTemplate(w, "index", PageVariables{Title: "ToDo App"})
+		renderTemplate(w, "index", PageVariables{Title: "ToDo App", TodoItems: defaultItems })
+	})
+	router.Get("/home", func(w http.ResponseWriter, r *http.Request) {
+		renderTemplate(w, "index", PageVariables{Title: "ToDo App", TodoItems: defaultItems})
 	})
 	fmt.Printf("Listening on port%s\n", port)
 	http.ListenAndServe(port, router)
