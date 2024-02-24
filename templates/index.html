@@ -1,13 +1,15 @@
 {{define "content"}}
-<div class="pb-7">
-    <input type="text" name="toda" value="">
-</div>
+<form action="/api/addTask" method="POST">
+    <div class="pb-7">
+        <input type="text" name="addTodo" placeholder="Enter something you want to do..." value="">
+    </div>
+</form>
 {{range $i, $item := .TodoItems}}
 <div>
     {{if $item.Status}}
-        <input class="w-6 aspect-square align-sub" checked type="checkbox" id="dynamic-{{$i}}" /> 
+    <input class="w-6 aspect-square align-sub" checked type="checkbox" id="dynamic-{{$i}}" />
     {{else}}
-        <input class="w-6 aspect-square align-sub" type="checkbox" id="dynamic-{{$i}}" /> 
+    <input class="w-6 aspect-square align-sub" type="checkbox" id="dynamic-{{$i}}" />
     {{end}}
     <label for="dynamic-{{$i}}" class="text-xl">{{$item.Label}}</label>
 </div>
