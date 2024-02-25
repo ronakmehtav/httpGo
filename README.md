@@ -27,3 +27,7 @@ go run main.go
 npm run tailwind
 go run main.go
 ```
+
+## Current State
+![Todo Web View](https://github.com/ronakmehtav/httpGo/assets/31774137/6814b0f1-e811-4fe5-95cf-b6b882798d09)
+
