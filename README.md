@@ -1,5 +1,5 @@
 # Todo App
-To understand and work with go, htmx and sqlite3 to make a simple todo app. 
+To understand and work with go, htmx and sqlite3 to make a simple todo app. The app is not going to be online ever. The idea is to have a CLI interface and Web interface for GUI.
 
 ## Goals
 - [x] Create a Server which can server html pages.
