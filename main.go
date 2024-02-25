@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"path/filepath"
 	"strings"
+    "strconv"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -68,6 +69,22 @@ func main() {
         http.Redirect(w,r, "/",http.StatusSeeOther)
 
     })
+
+    router.Put("/api/update/{index}", func(w http.ResponseWriter, r *http.Request) {
+        index,err := strconv.Atoi(chi.URLParam(r, "index"))
+        if err != nil {
+            http.Error(w, "The value passed must be a number.",http.StatusBadRequest)
+            return
+        }
+        
+        if index < 0 || index >= len(defaultItems) {
+            http.Error(w, "Incorrect value Passed.",http.StatusBadRequest)
+            return
+        }
+        defaultItems[index].Status = !defaultItems[index].Status;
+        w.WriteHeader(http.StatusOK)
+    })
+
 	fmt.Printf("Listening on port%s\n", port)
 	http.ListenAndServe(port, router)
 }

@@ -9,9 +9,9 @@
         {{range $i, $item := .TodoItems}}
         <li class="w-fit grid gap-1 grid-cols-[.1fr_auto]">
             {{if $item.Status}}
-            <input class="w-6 aspect-square align-sub" checked type="checkbox" id="dynamic-{{$i}}" />
+            <input class="w-6 aspect-square align-sub" hx-put="/api/update/{{$i}}" checked type="checkbox" id="dynamic-{{$i}}" />
             {{else}}
-            <input class="w-6 aspect-square align-sub" type="checkbox" id="dynamic-{{$i}}" />
+            <input class="w-6 aspect-square align-sub" hx-put="/api/update/{{$i}}" type="checkbox" id="dynamic-{{$i}}" />
             {{end}}
             <label for="dynamic-{{$i}}" class="text-xl">{{$item.Label}}</label>
         </li>
