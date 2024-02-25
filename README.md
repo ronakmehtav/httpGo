@@ -1,0 +1,29 @@
+# Todo App
+To understand and work with go, htmx and sqlite3 to make a simple todo app. 
+
+## Goals
+- [x] Create a Server which can server html pages.
+- [x] Add a styling system.
+- [x] Add htmx for interaction handling.
+- [ ] Connect to a local sqlite3 db.
+- [ ] Make a CLI interface.
+- [ ] Organise the Project in multiple module.
+
+
+## Learnings
+- Go template is good enough to solve this problem. The type safety of templ if
+is good. But it is not bad right now.
+- TailwindCss is not bad. I enjoyed using it as utility css. Though I did add 
+one custom css in. You can see that in `input.css` file. It handle's my logic of
+having different style when the task is marked done.
+
+## Run commands
+```bash
+go run main.go
+```
+
+## Development commands
+```bash
+npm run tailwind
+go run main.go
+```
