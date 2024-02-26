@@ -1,19 +1,26 @@
 {{define "content"}}
-<div class="max-w-6xl mx-auto w-[max(85vw,15rem)]">
-    <form hx-post="/api/addTask" hx-select="#todoItems" hx-swap="outerHTML" hx-target="#todoItems">
+<div id="todo__container" class="max-w-6xl mx-auto w-[max(85vw,15rem)]">
+    <form hx-post="/api/addTask" hx-select="#todo__container" hx-swap="outerHTML" hx-target="#todo__container">
         <input type="text" class="mb-7 w-full h-14 text-3xl rounded px-4 leading-[2.5]" name="addTodo"
             placeholder="Enter something you want to do..." autocomplete="off" value="">
     </form>
 
     <ul id="todoItems" class="mx-4 grid gap-2 max-w-screen-lg">
         {{range $i, $item := .TodoItems}}
-        <li class="w-fit grid gap-1 grid-cols-[.1fr_auto]">
-            {{if $item.Status}}
-            <input class="w-6 aspect-square align-sub" hx-put="/api/update/{{$i}}" checked type="checkbox" id="dynamic-{{$i}}" />
-            {{else}}
-            <input class="w-6 aspect-square align-sub" hx-put="/api/update/{{$i}}" type="checkbox" id="dynamic-{{$i}}" />
-            {{end}}
-            <label for="dynamic-{{$i}}" class="text-xl">{{$item.Label}}</label>
+        <li class="flex justify-between items-center">
+            <div class="w-fit grid gap-1 grid-cols-[.1fr_auto]">
+                {{if $item.Status}}
+                <input class="w-6 aspect-square" hx-put="/api/update/{{$i}}" checked type="checkbox"
+                    id="dynamic-{{$i}}" />
+                {{else}}
+                <input class="w-6 aspect-square" hx-put="/api/update/{{$i}}" type="checkbox" id="dynamic-{{$i}}" />
+                {{end}}
+                <label for="dynamic-{{$i}}" class="text-xl">{{$item.Label}}</label>
+            </div>
+            <button hx-delete="/api/delete/{{$i}}" hx-swap="outerHTML" hx-target="#todoItems" hx-select="#todoItems"
+                class="block uppercase bg-red-400 border-2 border-red-800 hover:bg-red-600 focus:bg-red-600 rounded-md p-1"
+                type="button">
+                delete </button>
         </li>
         {{end}}
     </ul>

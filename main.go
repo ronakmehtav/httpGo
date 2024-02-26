@@ -138,6 +138,29 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 	})
 
+    router.Delete("/api/delete/{index}", func(w http.ResponseWriter, r *http.Request) {
+		index, err := strconv.Atoi(chi.URLParam(r, "index"))
+		if err != nil {
+			http.Error(w, "The value passed must be a number.", http.StatusBadRequest)
+			return
+		}
+
+		if index < 0 || index >= len(defaultItems) {
+			http.Error(w, "Incorrect value Passed.", http.StatusBadRequest)
+			return
+		}
+        
+        stmtquery := fmt.Sprintf("DELETE from task WHERE id=%d;",defaultItems[index].id)
+		_, err = db.Exec(stmtquery)
+		if err != nil {
+			http.Error(w, "Failed to enter data into db.", http.StatusBadRequest)
+			return
+		}
+
+        defaultItems = append(defaultItems[:index],defaultItems[index+1:]...)
+        http.Redirect(w,r,"/",http.StatusSeeOther)
+    })
+
 	fmt.Printf("Listening on port%s\n", port)
 	http.ListenAndServe(port, router)
 }
