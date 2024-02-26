@@ -5,7 +5,7 @@ To understand and work with go, htmx and sqlite3 to make a simple todo app. The 
 - [x] Create a Server which can server html pages.
 - [x] Add a styling system.
 - [x] Add htmx for interaction handling.
-- [ ] Connect to a local sqlite3 db.
+- [x] Connect to a local sqlite3 db.
 - [ ] Make a CLI interface.
 - [ ] Organise the Project in multiple module.
 
