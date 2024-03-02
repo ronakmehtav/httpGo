@@ -34,5 +34,7 @@ go run main.go
 ```
 
 ## Current State
-![Todo Web View](https://github.com/ronakmehtav/httpGo/assets/31774137/6814b0f1-e811-4fe5-95cf-b6b882798d09)
+![Todo Web View](https://github.com/ronakmehtav/httpGo/assets/31774137/df791d09-e3da-4792-87c5-b1c72b273da9)
+
+
 
