@@ -8,6 +8,12 @@ To understand and work with go, htmx and sqlite3 to make a simple todo app. The 
 - [x] Connect to a local sqlite3 db.
 - [ ] Make a CLI interface.
 - [ ] Organise the Project in multiple module.
+- [ ] Introduce Date,Showing past month and rest in a new tab.
+
+### Possible Feature Addition
+- [ ] Classification of Task (Tags).
+- [ ] Sub Tasks.
+- [ ] Archiving in some different format.
 
 
 ## Learnings
